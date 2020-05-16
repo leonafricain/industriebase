@@ -13,8 +13,12 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "sequelize": "^5.21.9",
+    "sqlite3": "^4.2.0"
   }
 }

@@ -1,15 +1,22 @@
-const express = require('express');
-const cors = require('cors');
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 const morgan = require('morgan')
+const {sequelize} = require('./models')
+const config = require('./config/config')
+const router = require('./routes')
 
-const app = new express();
-// middelwares 
-app.use(express.json());
-app.use(express.urlencoded({extended: false}))
-app.use(morgan("dev"))
+const app = express()
+app.use(morgan('dev'))
+app.use(bodyParser.json())
+app.use(cors())
 
-app.get('/', (req, res) => {
-    res.send('hello there')
-})
+//require('./passport')
 
-app.listen(3000, ()=> console.log(`server listening on port 3000`))
+app.use(router)
+
+sequelize.sync({force: false})
+  .then(() => {
+    app.listen(config.port)
+    console.log(`Server started on port ${config.port}`)
+  })
