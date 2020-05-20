@@ -1,0 +1,241 @@
+[
+    {
+        "id": "dgci",
+        "dg": true,
+        "name": "DGCI",
+        "name_long": "DG. de la Compétivité Industrielle",
+        "nb_div": "3",
+        "children": [
+            {
+                "id": "dgci_qsi",
+                "name": "DQSI",
+                "name_long": "Division Qualité Sécurité Industrielle"
+            },
+            {
+                "id": "dgci_vcm",
+                "name": "DVCM",
+                "name_long": "Division Qualité Sécurité Industrielle"
+            },
+            {
+                "id": "dgci_i",
+                "name": "DI",
+                "name_long": "Division Innovation"
+            }
+        ]
+    },
+    {
+        "id": "dgpi",
+        "dg": true,
+        "name": "DGPI",
+        "name_long": "DG. Promotion Investissement",
+        "nb_div": "3",
+        "children": [
+            {
+                "id": "dgpi_ai",
+                "name": "DAI",
+                "name_long": "Division Attractivité Investissment"
+            },
+            {
+                "id": "dgpi_gpide",
+                "name": "DGPIDE",
+                "name_long": "Division Grands Projets IDE "
+            },
+            {
+                "id": "dgpi_diilpi",
+                "name": "DAI",
+                "name_long": "Division Dév. Infra. Indus. Logis. Pôles Indus."
+            }
+        ]
+    },
+    {
+        "id": "dggspm",
+        "dg": true,
+        "name": "DGGSPM",
+        "name_long": "DG. Gestion Secteur Public Marchand ",
+        "nb_div": "2",
+        "children": [
+            {
+                "id": "dggspm_spep",
+                "name": "DSPEP",
+                "name_long": "Division Suivi Participations Etat Privatisations "
+            },
+            {
+                "id": "dggspm_ppr",
+                "name": "DPPR",
+                "name_long": "Division Promotion Partenariat Redéploiement"
+            }
+        ]
+    },
+    {
+        "id": "dgm",
+        "dg": true,
+        "name": "DGM",
+        "name_long": "DG. Mines",
+        "nb_div": "2",
+        "children": [
+            {
+                "id": "dgm_dgrm",
+                "name": "DGRM",
+                "name_long": "Division Géologie Ressources Minérales"
+            },
+            {
+                "id": "dgm_mc",
+                "name": "DMC",
+                "name_long": "Division Mines Carrières"
+            }
+        ]
+    },
+    {
+        "id": "dgdit",
+        "dg": true,
+        "name": "DGDIT",
+        "name_long": "DG. Développement Industriel Technologique",
+        "nb_div": "5",
+        "children": [
+            {
+                "id": "dgdit_dismmmna",
+                "name": "DISMMMN",
+                "name_long": "Division Industries Sidérurgiques, Métallurgiques, Mécaniques, Métalliques, Navales,"
+            },
+            {
+                "id": "dgdit_ima",
+                "name": "DIMA",
+                "name_long": "Industries Manufacturières l’Agroalimentaire"
+            },
+            {
+                "id": "dgdit_ist",
+                "name": "DIST",
+                "name_long": "Industries Chimiques-Plastiques Matériaux Construction "
+            },
+            {
+                "id": "dgdit_nt",
+                "name": "DNT",
+                "name_long": "Nouvelles Technologies "
+            }
+        ]
+    },
+    {
+        "id": "dgpme",
+        "dg": true,
+        "name": "DGPME",
+        "name_long": "DG. PME",
+        "nb_div": "2",
+        "children": [
+            {
+                "id": "dgpme_ppme",
+                "name": "DPPME",
+                "name_long": "Division Promotion PME"
+            },
+            {
+                "id": "dgdit_ima",
+                "name": "DAPME",
+                "name_long": "Division Appui PME"
+            }
+        ]
+    },
+    {
+        "id": "dgvsesi",
+        "dg": true,
+        "name": "DGVSESI",
+        "name_long": "DG. Veille Stratégique, Etudes Systèmes d’Information",
+        "nb_div": "2",
+        "children": [
+            {
+                "id": "dgvsesi_vssi",
+                "name": "DVSSI",
+                "name_long": "Division Veille Stratégique Systèmes d’Information "
+            },
+            {
+                "id": "dgvsesi_ec",
+                "name": "D",
+                "name_long": "Division Etudes Economiques"
+            }
+        ]
+    },
+    {
+        "id": "dcc",
+        "dg": false,
+        "name": "DCC",
+        "name_long": "Direction Coopération Communication",
+        "nb_sd": 3,
+        "children": [
+            {
+                "id": "dcc_cb",
+                "name": "SDCB",
+                "name_long": "Sous-Direction Coopération Bilatérale"
+            },
+            {
+                "id": "dcc_cmr",
+                "name": "SDCMR",
+                "name_long": "Sous-Direction Coopération Multilatérale Régionale "
+            },
+            {
+                "id": "dcc_c",
+                "name": "SDC",
+                "name_long": "Sous-Direction Communication"
+            }
+        ]
+    },
+    {
+        "id": "drhf",
+        "dg": false,
+        "name": "DRHF",
+        "name_long": "Direction Ressources Humaines Formation",
+        "nb_sd": 2,
+        "children": [
+            {
+                "id": "drhf_rh",
+                "name": "SDRH",
+                "name_long": "Sous-Direction Ressources Humaines"
+            },
+            {
+                "id": "drhf_f",
+                "name": "SDF",
+                "name_long": "Sous-Direction Formation"
+            }
+        ]
+    },
+    {
+        "id": "dam",
+        "dg": false,
+        "name": "DAM",
+        "name_long": "Direction Administration Moyens",
+        "nb_sd": 2,
+        "children": [
+            {
+                "id": "dam_bc",
+                "name": "SDBC",
+                "name_long": "Sous-Direction Bidget Comptabilité"
+            },
+            {
+                "id": "dam_mgpp",
+                "name": "SDMGPP",
+                "name_long": "Sous-Direction Moyens Généraux Préservation Patrimoine"
+            }
+        ]
+    },
+    {
+        "id": "dejc",
+        "dg": false,
+        "name": "DEJC",
+        "name_long": "Direction Etudes Juridiques Contentieux",
+        "nb_sd": 3,
+        "children": [
+            {
+                "id": "dejc_ej",
+                "name": "SDEJ",
+                "name_long": "Sous-Direction Etudes Juridiques"
+            },
+            {
+                "id": "dejc_c",
+                "name": "SDC",
+                "name_long": "Sous-Direction Contentieux"
+            },
+            {
+                "id": "dejc_da",
+                "name": "SDDA",
+                "name_long": "Sous-Direction Documentation Archives"
+            }
+        ]
+    }
+]

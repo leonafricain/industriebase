@@ -1,0 +1,16 @@
+{
+"colors": [
+        {
+        "text": "Bleu",
+        "color": "#007fff"
+        },
+        {
+        "text": "Marron",
+        "color": "#5a2e17"
+        },
+        {
+        "text": "Vert",
+        "color": "green "
+        }
+    ]
+}
