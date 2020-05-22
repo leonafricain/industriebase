@@ -19,7 +19,7 @@ module.exports = {
           break
         case 'password':
           res.status(400).send({
-            message: `<strong>the password provided failed to match the flowing rules </strong>                                                                                                                               : <br>
+            message: `<strong>the password provided failed to match the flowing rules </strong>:<br>
             1. It must contain only characters lower case, upper case, numerics
             <br>
             2. It must be at least 5 characters in length and not graeter than 30

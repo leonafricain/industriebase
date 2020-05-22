@@ -10,17 +10,23 @@
 
 <script>
     import AuthForm from '../components/AuthForm'
+    import Service from '../services/AuthenticationService.js'
+    const ServiceAuth = new Service()
     export default {
         components: {
             AuthForm
         },      
        methods: {
-        async  login(event) {
-          let response = await this.$store.dispatch('login', event);  //IMPORTANT************************ 
-          console.log('response du login from store :', response );
-           this.$router.push('/')   // pour que ca a marché il fallait return promise from store dans login c un t
-         }
+        async login(event) {
+            try {
+               let user =  await ServiceAuth.login(event);
+               console.log(user)
+                
+            } catch (error) {
+                console.log(error)
+            }
        },
+    }
     }
 </script>
 
