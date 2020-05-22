@@ -14,7 +14,7 @@ export const authModule = {
         }
     },
     actions:{
-        register_user ({commit}, payload) {
+        set_user ({commit}, payload) {
             commit('SET_USER', payload)
         },
         set_token({commit}, payload) {

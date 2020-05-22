@@ -28,7 +28,37 @@ function jwtLogUser (user) {
 
 }
 
-ctrl.login = (req, res, next) => {
+ctrl.login = async (req, res, next) => {
+  try {
+    const {email, password} = req.body
+    const user = await User.findOne({
+      where: {
+        email: email
+      }
+    })
+    if (!user) {
+      return res.status(403).send({
+        message: 'The login information was incorrect'
+      })
+    }
+    const isPasswordValid = await user.comparePassword(password);
+
+    if (!isPasswordValid) {
+      return res.status(403).send({
+        error: 'The login information was incorrect'
+      })
+    }
+
+    //const userJson = user.toJSON()
+    res.status(201).json({
+      user: user,
+      token: jwtLogUser(user.toJSON())
+    })
+  } catch (err) {
+    res.status(500).send({
+      message: 'An error has occured trying to log in'
+    })
+  }
 }
 
 module.exports = ctrl

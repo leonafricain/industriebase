@@ -37,7 +37,7 @@
             this.err = null
             try {
                 let user = await  ServiceAuth.register(event);
-                this.$store.dispatch('authModule/register_user', user.data.user);
+                this.$store.dispatch('authModule/set_user', user.data.user);
                 this.$store.dispatch('authModule/set_token', user.data.token)
                 this.$router.push('/')
             } catch (error) {
