@@ -1,18 +1,18 @@
 <template>
-  <v-card  class="pa-1 white">
+  <v-card  class="pa-1 white" elevation=3>
     <div class="d-flex">
       <v-sheet
         elevation="8"
         class="mt-n6 ml-6 green d-flex justify-center align-center"
         width="65"
-        height="70"
+        height="75"
       >
         <v-icon dark size="28">{{`mdi-${icon}`}}</v-icon>
       </v-sheet>
-      <v-card-title class=" display-1 grey--text text--darken-2 font-weight-light">{{title}}</v-card-title>
+      <v-card-title class="display-1 grey--text text--darken-2 font-weight-thin">{{title}}</v-card-title>
     </div>
     <v-form v-model="isValid">
-        <div class="pa-8">
+        <div class="py-4 px-8">
           <v-text-field
              v-if="isRegisterPanel"
             :rules="[(v) => !!v || 'name is required']"

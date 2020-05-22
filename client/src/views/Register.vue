@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row no-gutters class="mt-6">
-            <v-col cols="6" offset="3">
+            <v-col cols="5" offset="3">
                 <auth-form isRegisterPanel=true title="Register" btn-text="Sign-up" icon="account-plus" @submitform="register" />
                 <div class="pa-3">
 
@@ -9,7 +9,7 @@
                         colored-border
                         dismissible
                         color="red accent-4"
-                        elevation="2">
+                        elevation="3">
                     <span class="caption" v-html="err" />
                 </v-alert>
                 </div>
@@ -21,6 +21,7 @@
 <script>
     import AuthForm from '../components/AuthForm'
     import Service from '../services/AuthenticationService'
+    
     const ServiceAuth = new Service()
     export default {
         data() {
@@ -28,7 +29,6 @@
                 err:null
             }
         },
-
         components: {
             AuthForm
         },
@@ -36,8 +36,10 @@
         async register(event) {
             this.err = null
             try {
-                let user = await  ServiceAuth.register(event)
-                console.log(user)
+                let user = await  ServiceAuth.register(event);
+                this.$store.dispatch('authModule/register_user', user.data.user);
+                this.$store.dispatch('authModule/set_token', user.data.token)
+                this.$router.push('/')
             } catch (error) {
                 this.err = error.response.data.message
             }

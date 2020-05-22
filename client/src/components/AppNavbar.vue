@@ -162,7 +162,7 @@
 
     ::v-deep .v-tabs-slider {
         background: greenyellow;
-        max-width: 35px;
+        max-width: 45px;
         margin: auto;
         margin-top: -1px;
     }

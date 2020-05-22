@@ -6,22 +6,23 @@ const { User } = require('../models')
 const ctrl = {}
 
 
-/* function jwtLogUser (user) {
-  return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: '1h' })
+function jwtLogUser (user) {
+  return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: '24h' })
 }
- */
 
 
  ctrl.register = async (req, res) => {
   try {
     const user = await User.create(req.body);
-    res.send({
-      user : user
+    res.status(201).send({
+      user : user,
+      token: jwtLogUser(user.toJSON())
     });
 
   } catch (error) {
     res.status(400).send({
-      erreur: `Cet Email est déja utilisé: ${error}`
+      message: `Cet adresse email est déja utilisée`,
+      error: error
     })
   }
 
