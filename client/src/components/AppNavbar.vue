@@ -8,9 +8,10 @@
             <span class="titre">Desk Manage</span>
             <v-spacer></v-spacer>
 
-            <span v-if="$store.state.user" class="caption font-weight-bold"> {{nameLoggedIn}}</span>
-                     <v-btn  v-tooltip= "Sortir" v-if="$store.state.user" text @click="logout">
-                        <v-icon dark v-on="on" size="18">mdi-logout</v-icon>
+            <!-- <span v-if="!loggedIn" class="caption font-weight-bold"> {{nameLoggedIn}}</span> -->
+                     <v-btn  v-if="loggedIn" text @click="logout">
+                        <v-icon dark size="18">mdi-logout</v-icon>
+                         Exit
                     </v-btn>
            <!--  <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
@@ -21,7 +22,7 @@
                 <span>quitter</span>
             </v-tooltip> -->
 
-            <div v-if="!$store.state.user">
+            <div v-if="!loggedIn">
                 <v-btn text to="/login">
                     <v-icon size="18">mdi-login</v-icon>
                     <span class=""> </span>
@@ -70,71 +71,7 @@
         data() {
             return {
                 drawer: false,
-                items: [{
-                        icon: "mdi-contacts",
-                        text: "Contacts"
-                    },
-                    {
-                        icon: "mdi-history",
-                        text: "Frequently contacted"
-                    },
-                    {
-                        icon: "mdi-content-copy",
-                        text: "Duplicates"
-                    },
-                    {
-                        icon: "mdi-chevron-up",
-                        "icon-alt": "mdi-chevron-down",
-                        text: "Labels",
-                        model: true,
-                        children: [{
-                            icon: "mdi-plus",
-                            text: "Create label"
-                        }]
-                    },
-                    {
-                        icon: "mdi-chevron-up",
-                        "icon-alt": "mdi-chevron-down",
-                        text: "More",
-                        model: false,
-                        children: [{
-                                text: "Import"
-                            },
-                            {
-                                text: "Export"
-                            },
-                            {
-                                text: "Print"
-                            },
-                            {
-                                text: "Undo changes"
-                            },
-                            {
-                                text: "Other contacts"
-                            }
-                        ]
-                    },
-                    {
-                        icon: "mdi-settings",
-                        text: "Settings"
-                    },
-                    {
-                        icon: "mdi-message",
-                        text: "Send feedback"
-                    },
-                    {
-                        icon: "mdi-help-circle",
-                        text: "Help"
-                    },
-                    {
-                        icon: "mdi-cellphone-link",
-                        text: "App downloads"
-                    },
-                    {
-                        icon: "mdi-keyboard",
-                        text: "Go to the old version"
-                    }
-                ]
+               
             }
         },
         methods: {
@@ -144,12 +81,16 @@
                 }
             },
             logout() {
-                this.$store.dispatch('logout')
+                this.$store.dispatch('authModule/logout');
+                this.$router.push('/login')
             }
         },
         computed: {
             nameLoggedIn() {
                 return this.$store.state.user.email
+            },
+            loggedIn () {
+                return this.$store.state.authModule.isUserLoggedIn
             }
         }
     }

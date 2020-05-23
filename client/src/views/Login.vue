@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row no-gutters class="mt-6">
-      <v-col cols="5" offset="3">
+      <v-col md="5" sm="6" offset-md="3" offse>
         <auth-form title="Login User" btn-text="login" icon="login" @submitform="login" />
         <div class="pa-3">
           <v-alert

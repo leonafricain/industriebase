@@ -38,14 +38,14 @@ ctrl.login = async (req, res, next) => {
     })
     if (!user) {
       return res.status(403).send({
-        message: 'The login information was incorrect'
+        message: ''
       })
     }
     const isPasswordValid = await user.comparePassword(password);
 
     if (!isPasswordValid) {
       return res.status(403).send({
-        error: 'The login information was incorrect'
+        message: 'The login information was incorrect'
       })
     }
 
