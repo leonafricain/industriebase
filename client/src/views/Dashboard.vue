@@ -1,12 +1,23 @@
 <template>
     <v-row no-gutters="">
        <v-col cols="6" offset="3">
-            <v-data-table :headers="headers" :items="desserts" sort-by="name" class="elevation-8">
+            <v-data-table :headers="headers" :items="desserts" sort-by="name" class="elevation-8" :search="search">
                 <template v-slot:top>
                     <v-toolbar color="purple lighten-4" flat style="border:solid">
                         <v-toolbar-title class="text-capitalize font-weight-bold">Mes activités</v-toolbar-title>
                         <v-divider class="mx-4" inset vertical></v-divider>
                         <v-spacer></v-spacer>
+                        <v-text-field
+                            class="mr-8"
+                            v-model="search"
+                            dense
+                            append-icon="mdi-magnify"
+                            dark
+                            flat
+                            solo-inverted
+                            hide-details
+                            clearable
+                      ></v-text-field>
                         <v-dialog v-model="dialog" max-width="500px">
                             <template v-slot:activator="{ on }">
                                 <v-btn text outlined color="primary"  class="mb-2" v-on="on">
@@ -79,6 +90,7 @@
     export default {
         data: () => ({
             dialog: false,
+            search: '',
             headers: [{
                     text: ' (name) Dessert',
                     align: 'start',

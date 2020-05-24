@@ -14,9 +14,9 @@
             <v-icon class="mt-n2" dark>mdi-clock-outline</v-icon>
           </v-col>
           <v-col >
-            <div class="mt-2 white--text">
-              <span class="body-2">{{formatDateAfficher}}</span>
-              <p class="caption">{{formatTimeAffiher}}</p>
+            <div class="mt-2 white--text font-weight-bold">
+              <span>{{formatDateAfficher}}</span>
+              <p class="yellow--text">{{formatTimeAffiher}}</p>
             </div>
           </v-col>  
         </v-row>

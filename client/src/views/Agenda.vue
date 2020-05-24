@@ -39,7 +39,7 @@
       <v-sheet height="600">
         <v-calendar ref="calendar" 
           :short-weekdays="false" v-model="focus" locale="fr" color="primary"
-          :weekdays="[0,1,2,3,4,5,6]" first-interval="7" :events="events" :event-color="getEventColor" :now="today"
+          :weekdays="[0,1,2,3,4,6]" first-interval="7" :events="events" :event-color="getEventColor" :now="today"
           :type="type" @click:event="showEvent" @click:more= "viewDay" @click:date= "viewDay" @change="updateRange"
           @click:day= "clickDay" @click:interval= "clickInterval"  @click:time= "clickTime">
         </v-calendar>
