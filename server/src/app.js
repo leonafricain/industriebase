@@ -8,11 +8,11 @@ const router = require('./routes')
 
 const app = express()
 app.use(morgan('dev'))
+app.use(express.static('uploads'));
 app.use(bodyParser.json())
 app.use(cors())
 
 //require('./passport')
-
 app.use(router)
 
 sequelize.sync({force: false})

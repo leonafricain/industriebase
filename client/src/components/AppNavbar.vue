@@ -76,13 +76,14 @@
         },
         methods: {
             goTo(route) {
-                if (route !== this.$route.name) {
+               /*  if (route !== this.$route.name) {
                     this.$router.push(route)
-                }
+                } */
+                this.$router.push({name: route})
             },
             logout() {
                 this.$store.dispatch('authModule/logout');
-                this.$router.push('/login')
+               // this.$router.push('/login')
             }
         },
         computed: {

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import  store from '../store'
+//import  store from '../store'
 
 Vue.use(VueRouter)
 
@@ -42,6 +42,12 @@ const routes = [
     component: () => import ('../views/Dashboard.vue'),
     
   },
+  {
+    path:'/dashboard/:pdfId/',
+    name:'pdfshow',
+    props: true,
+    component: () => import ('../views/PdfShow')
+  }
 ]
 
 const router = new VueRouter({
@@ -50,14 +56,14 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
 console.log("to", to.name !== 'login')
 
   
 console.log("store.state.authModule.isUserLoggedIn", !store.state.authModule.isUserLoggedIn)
   if (to.name !== 'login' && !store.state.authModule.isUserLoggedIn) {
-    next({ name: 'home' })
+    next({ name: 'home' });
   } 
   else next()
-})
+}) */
 export default router
