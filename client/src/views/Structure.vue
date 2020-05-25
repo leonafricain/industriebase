@@ -68,9 +68,5 @@ export default {
     tree: [],
     items
   }),
-  mounted () {
-      let variable = 34;
-      console.log("mounted -> variable", variable)
-  },
 };
 </script>

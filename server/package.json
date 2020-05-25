@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "multer": "^1.4.2",
     "sequelize": "^5.21.9",
     "sqlite3": "^4.2.0"
   }

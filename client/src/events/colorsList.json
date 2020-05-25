@@ -2,15 +2,19 @@
 "colors": [
         {
         "text": "Bleu",
-        "color": "#007fff"
+        "color": "blue"
         },
         {
         "text": "Marron",
-        "color": "#5a2e17"
+        "color": "brown"
         },
         {
         "text": "Vert",
         "color": "green "
+        },
+        {
+        "text": "orange",
+        "color": "orange"
         }
     ]
 }

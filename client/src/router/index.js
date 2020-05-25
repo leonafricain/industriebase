@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import  store from '../store'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -43,7 +44,6 @@ const routes = [
   },
 ]
 
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -51,7 +51,13 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'login' && !store.state.authModule.isUserLoggedIn) next({ name: 'login' })
+console.log("to", to.name !== 'login')
+
+  
+console.log("store.state.authModule.isUserLoggedIn", !store.state.authModule.isUserLoggedIn)
+  if (to.name !== 'login' && !store.state.authModule.isUserLoggedIn) {
+    next({ name: 'home' })
+  } 
   else next()
 })
 export default router
