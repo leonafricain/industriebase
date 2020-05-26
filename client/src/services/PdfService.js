@@ -9,6 +9,10 @@ export default class PdfService {
   getOnePdf (pdfId) {
     return Api.get(`/pdfdoc/${pdfId}`)
   }
+
+  createPdf (pdfdoc) {
+    return Api.post('/pdfdoc', pdfdoc )
+  }
   /* post (bookmark) {
     return axios.post('/bookmark', bookmark)
   }

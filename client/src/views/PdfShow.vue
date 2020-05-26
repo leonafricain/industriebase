@@ -12,7 +12,7 @@
               {{pdfDetails.subject}} 
             </span>
         </v-toolbar>
-      <iframe :src="`http://localhost:5000/${pdfDetails.pdfname}`" width="760" height="500" class="ml-3" />
+      <iframe v-if="pdfDetails" :src="`http://localhost:5000/${pdfDetails.pdfname}`" width="760" height="500" class="ml-3" />
       </v-card>
     </v-col>
   </v-row>
@@ -28,9 +28,10 @@ export default {
       pdfDetails: ""
     };
   },
-  async mounted() {
+  async beforeMount() {
     let response = await PdfService.getOnePdf(this.pdfId);
-    console.log("mounted -> response", response.data.pdf);
+    console.log("beforeMount -> pdf", response.data.pdf)
+   
     this.pdfDetails = response.data.pdf;
   }
 };

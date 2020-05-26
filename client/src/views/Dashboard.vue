@@ -63,7 +63,7 @@
                         >
                           <template v-slot:activator="{ on }">
                             <v-text-field
-                              v-model="editedItem.createdAt"
+                              v-model="editedItem.dateIn"
                               label="date..."
                               prepend-icon="mdi-calendar-clock"
                               readonly
@@ -81,7 +81,7 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="6">
                         <v-file-input
-                          v-model="filepdf"
+                          v-model="filePdf"
                           accept="application/pdf, image/*"
                           label="fichier..."
                         ></v-file-input>
@@ -147,7 +147,7 @@ import Service from "../services/PdfService";
 let pdfservice = new Service();
 export default {
   data: () => ({
-    filepdf: null,
+    filePdf: null,
     date: new Date().toISOString().substr(0, 10),
     menu: false,
     dialog: false,
@@ -238,16 +238,29 @@ export default {
       }, 300);
     },
 
-    save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
-      } else {
-        this.desserts.push(this.editedItem);
-      }
+    async save() {
+      let formData = new FormData();
+
+      formData.append('pdfdocmulter', this.filePdf);
+      formData.append('doctype', this.editedItem.doctype);
+      formData.append('expediteur', this.editedItem.expediteur);
+      formData.append('subject', this.editedItem.subject);
+
+          try {
+                await pdfservice.createPdf(formData, {
+                headers:{
+                  'Content-type': 'multipart/form-data'
+                }
+              })
+          } catch (error) {
+            console.log(error)
+          }
+
       this.close();
     },
     showPdf(item) {
         this.$router.push({name:'pdfshow', params:{pdfId: item.id}});
+        console.log("showPdf -> item.id", item)
     }
   }
 };

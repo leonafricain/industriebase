@@ -2,14 +2,13 @@ const { PdfDoc } = require('../models')
 
 const ctrl = {}
 
-
 ctrl.createPdf = async (req, res) => {
     try {
     const pdfdoc = await PdfDoc.create({
         doctype: req.body.doctype,
         expediteur: req.body.expediteur,
         subject: req.body.subject,
-        pdfname: req.file.filename
+        pdfname: req.file.pdfname
     });
     res.status(201).send({
       pdf: pdfdoc
