@@ -38,7 +38,7 @@ ctrl.login = async (req, res, next) => {
     })
     if (!user) {
       return res.status(403).send({
-        message: ''
+        message: 'not found user with this email adress'
       })
     }
     const isPasswordValid = await user.comparePassword(password);
