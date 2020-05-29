@@ -9,10 +9,14 @@
             <v-spacer></v-spacer>
 
             <!-- <span v-if="!loggedIn" class="caption font-weight-bold"> {{nameLoggedIn}}</span> -->
+                    <div v-if="loggedIn">
+                        {{nameLoggedIn}}
+                    </div>
                      <v-btn  v-if="loggedIn" text @click="logout">
                         <v-icon dark size="18">mdi-logout</v-icon>
                          Exit
                     </v-btn>
+                    
            <!--  <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
                     <v-btn v-if="$store.state.user" text @click="logout">
@@ -35,7 +39,7 @@
 
             <template v-slot:extension>
                 <v-tabs align-with-title>
-                    <v-tab @click="goTo('/')">
+                    <v-tab @click="goTo('home')">
                         <a class="v-btn white--text font-weight-bold">
                              <v-icon left size="20">mdi-home</v-icon>
                             <span clas  s="font-weight-bold">Accueil</span>
@@ -79,16 +83,16 @@
                /*  if (route !== this.$route.name) {
                     this.$router.push(route)
                 } */
-                this.$router.push({name: route})
+                this.$router.push({name: route}).catch(e => console.log(e))
             },
             logout() {
                 this.$store.dispatch('authModule/logout');
-               // this.$router.push('/login')
+               this.$router.push('/')
             }
         },
         computed: {
             nameLoggedIn() {
-                return this.$store.state.user.email
+                return this.$store.state.authModule.user.email
             },
             loggedIn () {
                 return this.$store.state.authModule.isUserLoggedIn

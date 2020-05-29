@@ -11,7 +11,7 @@
       </v-sheet>
       <v-card-title class="display-1 grey--text text--darken-2 font-weight-thin">{{title}}</v-card-title>
     </div>
-    <v-form v-model="isValid">
+    <v-form v-model="isValid" autocomplete="off">
         <div class="py-4 px-8">
           <v-text-field
              v-if="isRegisterPanel"
@@ -28,6 +28,7 @@
             color="blue darken-2"
             label="Email Adress"
             prepend-icon="mdi-account-circle"
+            autocomplete="off"
             v-model="userInfo.email"
           ></v-text-field>
     

@@ -7,7 +7,7 @@ const ctrl = {}
 
 
 function jwtLogUser (user) {
-  return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: '24h' })
+  return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: '60' })
 }
 
 

@@ -4,7 +4,6 @@
             <v-col cols="5" offset="3">
                 <auth-form isRegisterPanel=true title="Register" btn-text="Sign-up" icon="account-plus" @submitform="register" />
                 <div class="pa-3">
-
                 <v-alert v-if="err" border="left"
                         colored-border
                         dismissible

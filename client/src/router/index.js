@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-//import  store from '../store'
+import  store from '../store'
 
 Vue.use(VueRouter)
 
@@ -14,12 +14,18 @@ const routes = [
   {
     path: '/agenda',
     name: 'agenda',
-    component: () => import('../views/Agenda.vue')
+    component: () => import('../views/Agenda.vue'),
+    meta:{
+      requireAuth: true
+    }
   },
   {
     path: '/structure',
     name: 'structure',
-    component: () => import('../views/Structure.vue')
+    component: () => import('../views/Structure.vue'),
+    meta:{
+      requireAuth: false
+    }
   },
   {
     path:'/jour',
@@ -40,13 +46,19 @@ const routes = [
     path:'/dashboard',
     name: 'dashboard',
     component: () => import ('../views/Dashboard.vue'),
+    meta:{
+      requireAuth: true
+    }
     
   },
   {
     path:'/dashboard/:pdfId/',
     name:'pdfshow',
     props: true,
-    component: () => import ('../views/PdfShow')
+    component: () => import ('../views/PdfShow'),
+    meta:{
+      requireAuth: true
+    }
   }
 ]
 
@@ -56,14 +68,16 @@ const router = new VueRouter({
   routes
 })
 
-/* router.beforeEach((to, from, next) => {
-console.log("to", to.name !== 'login')
 
-  
-console.log("store.state.authModule.isUserLoggedIn", !store.state.authModule.isUserLoggedIn)
-  if (to.name !== 'login' && !store.state.authModule.isUserLoggedIn) {
-    next({ name: 'home' });
-  } 
-  else next()
-}) */
+router.beforeEach((to, from, next) => {
+    if(to.matched.some(route => route.meta.requireAuth)) {
+      if(store.state.authModule.isUserLoggedIn) {
+        next()
+      } else {
+        next({path: '/login'})
+      }
+    } else {
+      next()
+    }
+})
 export default router
