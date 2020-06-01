@@ -7,10 +7,8 @@ const ctrl = {}
 
 
 function jwtLogUser (user) {
-  return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: '60' })
+  return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: '1h' })
 }
-
-
  ctrl.register = async (req, res) => {
   try {
     const user = await User.create(req.body);

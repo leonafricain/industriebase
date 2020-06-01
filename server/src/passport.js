@@ -1,27 +1,24 @@
-const passport = require('passport');
-const { User } = require('./models');
+const passport = require('passport')
+const { User } = require('./models')
 
-const JwtStrategy = require('passport-jwt').JwtStrategy;
+const JwtStrategy = require('passport-jwt').Strategy
+const ExtractJwt = require('passport-jwt').ExtractJwt
 
-const ExtractJwt = require('passport-jwt').ExtractJwt;
 const config = require('./config/config')
 
-const opts = {
+passport.use(
+  new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: authentication.jwtSecret,
-    passReqToCallback: true
-  }
-  const strategy = new JwtStrategy(opts, (req, payload, next) => {
-    User.findById( payload.id )
-      .then(response => {
-
-        if (!response) {
-          return next(new Error(), false)
-        }
-        next(null, response)
-      })
-      .catch(err => {
-        return next(new Error(err), false)
-      })
+    secretOrKey: config.authentication.jwtSecret
+  }, async function (jwtPayload, done) {
+    try {
+      const user = await User.findByPk(jwtPayload.id)
+      if (!user) {
+        return done(new Error(), false)
+      }
+      return done(null, user)
+    } catch (err) {
+      return done(new Error(), false)
+    }
   })
-  passport.use(strategy)
+)
