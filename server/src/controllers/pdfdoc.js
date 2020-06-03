@@ -26,23 +26,30 @@ ctrl.createPdf = async (req, res) => {
 
 ctrl.getOnePdf = async(req, res) => {
   try {
-    console.log('===============',req.user)
-    console.log("ctrl.getOnePdf -> req.params.pdfId", req.params.pdfId)
-    
-    const pdf = await PdfDoc.findByPk(req.params.pdfId);
+    console.log('req.uset=======', req.user)
+        if (req.user){
+
+          const pdf = await PdfDoc.findByPk(req.params.pdfId);
+
+          if (pdf === null) {
+            console.log('Not found!');
+            res.status(404).send({
+              message: `document not found`
+            })
+          } else {
+            console.log(pdf instanceof PdfDoc); // true
+            res.status(200).send({
+              pdf: pdf
+            })
+          }
+        } else {
+            res.status(400).send({
+              message: 'not token authorozed'
+            })
+        }
     
 
-  if (pdf === null) {
-    console.log('Not found!');
-    res.status(404).send({
-      message: `document not found`
-    })
-  } else {
-    console.log(pdf instanceof PdfDoc); // true
-    res.status(200).send({
-      pdf: pdf
-    })
-  }
+  
     
   } catch (error) {
     res.status(500).send({

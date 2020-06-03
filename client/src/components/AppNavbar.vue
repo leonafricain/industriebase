@@ -38,7 +38,7 @@
             </div>
 
             <template v-slot:extension>
-                <v-tabs align-with-title>
+                <v-tabs align-with-title v-model="tab">
                     <v-tab @click="goTo('home')">
                         <a class="v-btn white--text font-weight-bold">
                              <v-icon left size="20">mdi-home</v-icon>
@@ -75,6 +75,7 @@
         data() {
             return {
                 drawer: false,
+                tab: null
                
             }
         },

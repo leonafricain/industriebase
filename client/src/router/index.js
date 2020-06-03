@@ -74,7 +74,7 @@ router.beforeEach((to, from, next) => {
       if(store.state.authModule.isUserLoggedIn) {
         next()
       } else {
-        next({path: '/login'})
+        next({path: '/'})
       }
     } else {
       next()

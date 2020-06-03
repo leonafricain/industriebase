@@ -45,14 +45,14 @@
         </v-calendar>
 
         <!-- panneau popup dialog pour ajouter un evenement  -->
-        <v-dialog v-model="dialog" max-width="40%" scrollable :overlay="false" transition="dialog-transition">
+        <v-dialog v-model="dialog" max-width="80%" scrollable :overlay="false" transition="dialog-transition">
           <v-card>
             <v-card-title class="headline text-uppercase grey lighten-2 font-weight-bold title grey--text text--darken-2">
                 <div class="d-flex justify-center flex-grow-1">
                     <v-avatar color="grey" size="30">
                       <v-icon dark>mdi-plus</v-icon>
                      </v-avatar>
-               <span class="mx-2" style="letter-spacing:-0.7px"> Evenement & activite</span>
+               <span class="mx-2" style="letter-spacing:-0.7px"> Evenement</span>
                <v-spacer></v-spacer>
                <v-icon color="red darken" style="cursor:pointer" @click="dialog = false"  >mdi-close-box</v-icon>
                 </div>

@@ -115,7 +115,6 @@
             role="img"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 384 512"
-            
           >
             <path
               fill="currentColor"
@@ -129,14 +128,27 @@
         <template v-slot:no-data>
           <v-btn color="primary">Reset</v-btn>
         </template>
-        <template v-slot:item.dateIn="{item}">
+        <template v-slot:item.createdAt= {item}>
+            {{new Date(item.createdAt).toISOString().substr(0, 10)}}
+        </template>
+
+        <template v-slot:header.subject = "{header}">
+         <span class="body-1 font-weight-bold blue--text">{{header.text}}</span>
+        </template>
+        <template v-slot:header.expediteur = "{header}">
+         <span class="body-1 font-weight-bold blue--text">{{header.text}}</span>
+        </template>
+        <template v-slot:header.doctype = "{header}">
+         <span class="body-1 font-weight-bold blue--text">{{header.text}}</span>
+        </template>
+        <!-- <template v-slot:item.dateIn="{item}">
           <v-icon
             :class="item.dateIn > new Date() ? 'red--text': 'green--text'"
             class="mx-1"
             size="14"
           >{{ item.dateIn > new Date() ? 'mdi-arrow-up' : 'mdi-arrow-down' }}</v-icon>
           {{`${item.dateIn}`}}
-        </template>
+        </template> -->
       </v-data-table>
     </v-col>
   </v-row>
