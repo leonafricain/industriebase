@@ -15,28 +15,27 @@ const multer = require('multer');
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
-
+  
   const token = authHeader && authHeader.split(' ')[1]
-  console.log(token)
+  console.log("authenticateToken -> token", token)
+  
   if (token == null) {
     res.status(401).json({
       message: 'Access is bloqued'
     })
   }
-
   jwt.verify(token, config.authentication.jwtSecret, (err, user) => {
    
     if (err) {
           res.status(401).json({
-            message: `token erreur ${err}`
-          })
+            message: `Votre session s'est expiré, veuillez login ... ${err}`
+          });
     }else {
       req.user = user
       next()
     }
   })
 }
-
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -75,7 +74,7 @@ router.post('/login', userController.login)
 
 // pdf routes
 router.post('/pdfdoc', upload.single('pdfdocmulter'), pdfControlleur.createPdf);
-router.get('/pdfdoc',  pdfControlleur.getAllPdf);
+router.get('/pdfdoc', authenticateToken,  pdfControlleur.getAllPdf);
 router.get('/pdfdoc/:pdfId', authenticateToken, pdfControlleur.getOnePdf)
 // bookmark routes
 module.exports = router

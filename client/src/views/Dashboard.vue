@@ -126,7 +126,7 @@
           -->
         </template>
         <template v-slot:no-data>
-          <v-btn color="primary">Reset</v-btn>
+          <v-btn color="primary" @click="initialize">Reset</v-btn>
         </template>
         <template v-slot:item.createdAt= {item}>
             {{new Date(item.createdAt).toISOString().substr(0, 10)}}
@@ -150,7 +150,19 @@
           {{`${item.dateIn}`}}
         </template> -->
       </v-data-table>
-    </v-col>
+
+      <!-- snackbar  -->
+    <v-snackbar
+    color= "red"
+    class="font-weight-bold body-1"
+      v-model="snackbar"
+       :top= true
+      >
+        {{error}}
+      
+    </v-snackbar>
+      
+          </v-col>
   </v-row>
 </template> 
 
@@ -164,6 +176,9 @@ export default {
     menu: false,
     dialog: false,
     search: "",
+    snackbar: false,
+    y: 'top',
+    error: null,
     headers: [
       {
         text: "Document",
@@ -222,11 +237,9 @@ export default {
     }
   },
 
-  async created() {
-    //  this.initialize();
-    let response = await pdfservice.getPdfs();
-    console.log("created -> response", response.data.pdfs);
-    this.pdfs = response.data.pdfs;
+  async mounted() {
+      this.initialize();
+   
   },
 
   methods: {
@@ -252,7 +265,6 @@ export default {
 
     async save() {
       let formData = new FormData();
-
       formData.append('pdfdocmulter', this.filePdf);
       formData.append('doctype', this.editedItem.doctype);
       formData.append('expediteur', this.editedItem.expediteur);
@@ -263,7 +275,8 @@ export default {
                 headers:{
                   'Content-type': 'multipart/form-data'
                 }
-              })
+              });
+              this.initialize()
           } catch (error) {
             console.log(error)
           }
@@ -272,7 +285,19 @@ export default {
     },
     showPdf(item) {
         this.$router.push({name:'pdfshow', params:{pdfId: item.id}});
-        console.log("showPdf -> item.id", item)
+    },
+    async initialize () {
+      
+      try {
+        let response = await pdfservice.getPdfs();
+        console.log("initialize -> response", response)
+        this.pdfs = response.data.pdfs;
+        
+      } catch (error) {
+      console.log("error==", error.response.data.message);
+      this.snackbar = true
+        this.error = error.response.data.message
+      }
     }
   }
 };

@@ -26,12 +26,15 @@ export const authModule = {
         set_token({commit}, payload) {
             commit('SET_TOKEN', payload);
         },
-        logout ({commit, state},) {
-            if (state.isUserLoggedIn) {
+        logout ({commit},) {
+            if (this.state.isUserLoggedIn) {
                 localStorage.removeItem('set_token')
             }
             commit('SET_USER', null);
             commit('SET_TOKEN', null)
+        },
+        logoutExpToken({commit}) {
+            commit('SET_USER', null)
         }
         
     },

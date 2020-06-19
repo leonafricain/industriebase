@@ -1,7 +1,7 @@
 <template>
   <v-row class="mt-0 pt-0">
     <v-col cols="12">
-      <v-sheet height=48>
+      <v-sheet height=48 color="red" >
         <v-toolbar dense flat>
           <v-btn small outlined color="success" class="mr-2 font-weight-bold" @click="dialog = true">Nouvelle Activité
           </v-btn>
@@ -45,7 +45,7 @@
         </v-calendar>
 
         <!-- panneau popup dialog pour ajouter un evenement  -->
-        <v-dialog v-model="dialog" max-width="80%" scrollable :overlay="false" transition="dialog-transition">
+        <v-dialog v-model="dialog" max-width="40%" scrollable :overlay="false" transition="dialog-transition">
           <v-card>
             <v-card-title class="headline text-uppercase grey lighten-2 font-weight-bold title grey--text text--darken-2">
                 <div class="d-flex justify-center flex-grow-1">
@@ -140,7 +140,7 @@
            :clearFileds = "showClickAddEvent" 
            :currentClickTime = "currentClickTime" 
            icon= "credit-card-plus-outline" 
-           title= "Evenement" 
+           title= "Dossier" 
            btnText= "Sauver" 
            @addformEvent="addEvent($event)">
         </form-event>
@@ -237,14 +237,14 @@
           console.log('dataEvent from formEvent component :', dataEvent);
       },
       clickTime (event) {
-        console.log('event de clickTime  :', event);
          const { day, time, weekday, hour, date } = event
          this.showClickAddEvent = true
          this.currentClickTime = {day, time, weekday, hour, date,  mois: this.monthFormatter(event)}
       },
       clickDay(event) {
-         this.dialog = true;
-         console.log('event from click day in mont case :', event);
+        // this.dialog = true;
+         this.showClickAddEvent = true
+         console.log('event from click day in month case :', event);
       },
       clickInterval(ev) {
           console.log('event de click:interval :', ev );
@@ -317,7 +317,6 @@
         }
       },
       viewDay({date}) {
-        console.log('click:date et click:more date de view day just for month and week clicker sur le rond du chiifre du jour:', date);
         this.focus = date;
         this.type = "day";
       },
@@ -334,7 +333,6 @@
         this.$refs.calendar.next();
       },
       showEvent(e) {
-        console.log("e de showEvent function :", e);
         const open = () => {
           this.selectedEvent = e.event;
           this.selectedElement = e.nativeEvent.target;
