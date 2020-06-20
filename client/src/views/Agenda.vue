@@ -1,7 +1,7 @@
 <template>
   <v-row class="mt-0 pt-0">
     <v-col cols="12">
-      <v-sheet height=48 color="red" >
+      <v-sheet height=49>
         <v-toolbar dense flat>
           <v-btn small outlined color="success" class="mr-2 font-weight-bold" @click="dialog = true">Nouvelle Activité
           </v-btn>
@@ -52,7 +52,7 @@
                     <v-avatar color="grey" size="30">
                       <v-icon dark>mdi-plus</v-icon>
                      </v-avatar>
-               <span class="mx-2" style="letter-spacing:-0.7px"> Evenement</span>
+               <span class="mx-2" style="letter-spacing:-0.7px"> Nouvelle activité</span>
                <v-spacer></v-spacer>
                <v-icon color="red darken" style="cursor:pointer" @click="dialog = false"  >mdi-close-box</v-icon>
                 </div>
@@ -85,7 +85,7 @@
         </v-dialog>
         <!-- fin panneau -->
 
-        <!--      Peanau de event avec sa couleur -->
+        <!--      Paneau de event avec sa couleur -->
         <v-menu v-model="selectedOpen" :close-on-content-click="false" :activator="selectedElement" offset-x>
           <v-card color="white" min-width="400">
             <v-toolbar flat dense :color="selectedEvent.color" dark>
@@ -133,7 +133,7 @@
       </v-card>
     </v-dialog>
 
-    <!-- form event  -->
+    <!-- form event quand on click dans les cases du calendrrier -->
     <v-dialog v-model="showClickAddEvent" max-width="450">
         <form-event 
            @showClickAddEventClose="showClickAddEvent = false" 
@@ -252,7 +252,7 @@
       editEvent(event) {
         this.nom = event.name;
         this.detaille = event.details,
-          this.debut = event.start;
+        this.debut = event.start;
         this.fin = event.end;
         this.selectColor = {
           text: `${event.color}`,
@@ -271,8 +271,6 @@
         }
       },
       async addEvent(eventform) {
-
-        console.log('eventform =>>>>>>>>>>>>>>>>>>>>>>:', eventform);
         try {
           if (this.nom && this.debut) {
             await db.collection('calEvent').add({
@@ -291,7 +289,6 @@
           }
         } catch (error) {
             this.error = error.message + " login first"
-          console.log('error :', error);
           this.snackbar = true
           
         }

@@ -20,8 +20,9 @@ fs
     const model = sequelize.import(path.join(__dirname, file))
     db[model.name] = model
   })
-
 Object.keys(db).forEach(function (modelName) {
+console.log("modelName", modelName)
+  
   if ('associate' in db[modelName]) {
     db[modelName].associate(db)
   }
@@ -29,5 +30,4 @@ Object.keys(db).forEach(function (modelName) {
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
-
 module.exports = db
